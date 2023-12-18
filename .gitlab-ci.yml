@@ -1,0 +1,31 @@
+stages:
+  - deploy
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y openssh-client  # Установка SSH-клиента
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -  # Добавление SSH-ключа
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+deploy_staging:
+   stage: deploy
+   script:
+    - echo "Hello, World STAGING, ALL!" # Замена на простой пример "Hello, World!"
+    - ssh $DEPLOY_USER@$DEPLOY_HOST "cd /home/hvalya_backend_new/www && git pull http://$DEPLOY_GIT_USER:$DEPLOY_GIT_PASSWORD@$DEPLOY_GIT_HOST/development-backend/hvalya-backend-new.git develop --no-edit && composer update && npm i"
+   environment:
+       name: staging
+   only:
+       - develop
+deploy_production:
+  stage: deploy
+  script:
+    - echo "Hello, World, ALL!" # Замена на простой пример "Hello, World!"
+    - ssh $DEPLOY_USER@$DEPLOY_HOST "cd /home/hvalya_backend_new/www && git pull http://$DEPLOY_GIT_USER:$DEPLOY_GIT_PASSWORD@$DEPLOY_GIT_HOST/development-backend/hvalya-backend-new.git develop --no-edit && composer update && npm i"
+  environment:
+    name: development  # Замена на development
+  when: manual
+  only:
+    - master  # Деплой будет происходить только при пуше в мастер

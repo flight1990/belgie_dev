@@ -1,0 +1,4335 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "БЕЛГИЕ API",
+        "description": "API для работы с данных БЕЛГИЕ",
+        "contact": {
+            "email": ""
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://belgie-v2",
+            "description": "API Сервис"
+        }
+    ],
+    "paths": {
+        "/api/v1/get-base-tower": {
+            "get": {
+                "tags": [
+                    "GET методы"
+                ],
+                "summary": "Возвращает ближайшие вышки от коодинат",
+                "description": "Возвращает ближайшие вышки от коодинат",
+                "operationId": "getBaseTower",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mnc",
+                        "in": "query",
+                        "description": "MNC оператора",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "cell_id",
+                        "in": "query",
+                        "description": "cell_id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "stanard",
+                        "in": "query",
+                        "description": "Standard",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "x": 27.56667,
+                                    "y": 53.9,
+                                    "mnc": "1",
+                                    "standard": "GSM",
+                                    "cell_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Результат",
+                                        "value": [
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 107,
+                                                "lac": 107,
+                                                "cell_id": 1074,
+                                                "mnc": 1,
+                                                "y": 53.90361,
+                                                "x": 27.5601944444444
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 107,
+                                                "lac": 107,
+                                                "cell_id": 1075,
+                                                "mnc": 1,
+                                                "y": 53.90361,
+                                                "x": 27.5601944444444
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 107,
+                                                "lac": 107,
+                                                "cell_id": 1076,
+                                                "mnc": 1,
+                                                "y": 53.90361,
+                                                "x": 27.5601944444444
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/create-user": {
+            "post": {
+                "tags": [
+                    "POST методы"
+                ],
+                "summary": "Создает пользователя",
+                "description": "Создает пользователя",
+                "operationId": "createUser",
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "query",
+                        "description": "Хеш пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "hash": "3c786cc9ffd0288dc717233509613e2d"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Создан пользователь"
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/get-start-tower": {
+            "get": {
+                "tags": [
+                    "GET методы"
+                ],
+                "summary": "Возвращает ближайшие вышки от коодинат",
+                "description": "Возвращает ближайшие вышки от коодинат",
+                "operationId": "getStartTower",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mnc",
+                        "in": "query",
+                        "description": "MNC оператора",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "x": 27.56667,
+                                    "y": 53.9,
+                                    "mnc": "1"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Результат",
+                                        "value": [
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 107,
+                                                "lac": 107,
+                                                "cell_id": 1074,
+                                                "mnc": 1,
+                                                "y": 53.90361,
+                                                "x": 27.5601944444444
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 107,
+                                                "lac": 107,
+                                                "cell_id": 1075,
+                                                "mnc": 1,
+                                                "y": 53.90361,
+                                                "x": 27.5601944444444
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 107,
+                                                "lac": 107,
+                                                "cell_id": 1076,
+                                                "mnc": 1,
+                                                "y": 53.90361,
+                                                "x": 27.5601944444444
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/get-location-towers": {
+            "get": {
+                "tags": [
+                    "GET методы"
+                ],
+                "summary": "Возвращает локацию вышек",
+                "description": "Возвращает локацию вышек находящихся в 1,5 радиуса от обслуживаемой вышки",
+                "operationId": "getLocationTowers",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "distance",
+                        "in": "query",
+                        "description": "Дистанция",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "x": 27.56667,
+                                    "y": 53.9,
+                                    "distance": "1.60690009015365"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Результат",
+                                        "value": [
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "A1 BY",
+                                                "bsn": 5519,
+                                                "lac": 103,
+                                                "cell_id": 5271,
+                                                "mnc": 1,
+                                                "y": "53.8685833333333",
+                                                "x": "27.3914722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "A1 BY",
+                                                "bsn": 5519,
+                                                "lac": 103,
+                                                "cell_id": 5272,
+                                                "mnc": 1,
+                                                "y": "53.8685833333333",
+                                                "x": "27.3914722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "A1 BY",
+                                                "bsn": 5519,
+                                                "lac": 103,
+                                                "cell_id": 5273,
+                                                "mnc": 1,
+                                                "y": "53.8685833333333",
+                                                "x": "27.3914722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 301,
+                                                "lac": 204,
+                                                "cell_id": 3011,
+                                                "mnc": 2,
+                                                "y": "53.8727222222222",
+                                                "x": "27.4014722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 301,
+                                                "lac": 204,
+                                                "cell_id": 3012,
+                                                "mnc": 2,
+                                                "y": "53.8727222222222",
+                                                "x": "27.4014722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 301,
+                                                "lac": 204,
+                                                "cell_id": 3013,
+                                                "mnc": 2,
+                                                "y": "53.8727222222222",
+                                                "x": "27.4014722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 301,
+                                                "lac": 204,
+                                                "cell_id": 3014,
+                                                "mnc": 2,
+                                                "y": "53.8727222222222",
+                                                "x": "27.4014722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 301,
+                                                "lac": 204,
+                                                "cell_id": 3015,
+                                                "mnc": 2,
+                                                "y": "53.8727222222222",
+                                                "x": "27.4014722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 301,
+                                                "lac": 204,
+                                                "cell_id": 3016,
+                                                "mnc": 2,
+                                                "y": "53.8727222222222",
+                                                "x": "27.4014722222222"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "life:) BY",
+                                                "bsn": 1005,
+                                                "lac": 100,
+                                                "cell_id": 10051,
+                                                "mnc": 4,
+                                                "y": "53.8726111110051",
+                                                "x": "27.4016666666667"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "life:) BY",
+                                                "bsn": 1005,
+                                                "lac": 100,
+                                                "cell_id": 10052,
+                                                "mnc": 4,
+                                                "y": "53.8726111110051",
+                                                "x": "27.4016666666667"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "life:) BY",
+                                                "bsn": 1005,
+                                                "lac": 100,
+                                                "cell_id": 10053,
+                                                "mnc": 4,
+                                                "y": "53.8726111110051",
+                                                "x": "27.4016666666667"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "A1 BY",
+                                                "bsn": 157,
+                                                "lac": 103,
+                                                "cell_id": 1571,
+                                                "mnc": 1,
+                                                "y": "53.8722222222222",
+                                                "x": "27.4021388888889"
+                                            },
+                                            {
+                                                "standard": "GSM",
+                                                "operator": "A1 BY",
+                                                "bsn": 157,
+                                                "lac": 103,
+                                                "cell_id": 1572,
+                                                "mnc": 1,
+                                                "y": "53.8722222222222",
+                                                "x": "27.4021388888889"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/create-test": {
+            "post": {
+                "tags": [
+                    "POST методы"
+                ],
+                "summary": "Создает тест",
+                "description": "Создает тест",
+                "operationId": "createTest",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "hash",
+                        "in": "query",
+                        "description": "Хеш пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "mnc",
+                        "in": "query",
+                        "description": "MNC оператора",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "standard",
+                        "in": "query",
+                        "description": "Стандарт",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "connection_type",
+                        "in": "query",
+                        "description": "Технология",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "server_ip",
+                        "in": "query",
+                        "description": "Тестовый сервер",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "created_at",
+                        "in": "query",
+                        "description": "Дата и время создание теста",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "model_phone",
+                        "in": "query",
+                        "description": "Модель мобильного телефона",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "version_os",
+                        "in": "query",
+                        "description": "Версия ОС",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "level_signal",
+                        "in": "query",
+                        "description": "Уровень принимаемого сигнла, дБм",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "max_speed_download",
+                        "in": "query",
+                        "description": "Максимальная скорость передачи данных (режим download), Мб/с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "medium_speed_download",
+                        "in": "query",
+                        "description": "Средняя скорость передачи данных (режим download), Мб/с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "max_speed_upload",
+                        "in": "query",
+                        "description": "Максимальная скорость передачи данных (режим upload), Мб/с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "min_speed_upload",
+                        "in": "query",
+                        "description": "Средняя скорость передачи данных (режим upload), Мб/с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "max_ping",
+                        "in": "query",
+                        "description": "Максимальное время задержки передачи IP-пакетов (ping), с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "medium_ping",
+                        "in": "query",
+                        "description": "Среднее время задержки передачи IP-пакетов (ping), с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "loss_ping",
+                        "in": "query",
+                        "description": "Количество потеряных IP-пакетов",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "address_site_1",
+                        "in": "query",
+                        "description": "Адрес  вебстраницы №1",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "address_site_2",
+                        "in": "query",
+                        "description": "Адрес  вебстраницы №2",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "address_site_3",
+                        "in": "query",
+                        "description": "Адрес  вебстраницы №3",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "time_download_web_1",
+                        "in": "query",
+                        "description": "Время загрузки вебстраницы №1,с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "time_download_web_2",
+                        "in": "query",
+                        "description": "Время загрузки вебстраницы №2,с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "time_download_web_3",
+                        "in": "query",
+                        "description": "Время загрузки вебстраницы №3,с",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "load_web_1",
+                        "in": "query",
+                        "description": "Нагрузка вебстраницы №1, кБ",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "load_web_2",
+                        "in": "query",
+                        "description": "Нагрузка вебстраницы №2, кБ",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "load_web_3",
+                        "in": "query",
+                        "description": "Нагрузка вебстраницы №3, кБ",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "address_youtube",
+                        "in": "query",
+                        "description": "Адрес youtube - страницы (url)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "screen_resolution",
+                        "in": "query",
+                        "description": "Разрешение экрана №1-№5 (360р-8k)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "time_start",
+                        "in": "query",
+                        "description": "Время начала воспроизведения, c",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "data_used",
+                        "in": "query",
+                        "description": "Использовано данных, Кб",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "complaint",
+                        "in": "query",
+                        "description": "Отправка результата на улучшение качества сети",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "is_room",
+                        "in": "query",
+                        "description": "Тест проведен в помещении?",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "x": 27.56667,
+                                    "y": 53.9,
+                                    "hash": "3c786cc9ffd0288dc717233509613e2d",
+                                    "mnc": "MTS.BY",
+                                    "standard": "GSM",
+                                    "connection_type": "3G",
+                                    "server_ip": "212.98.179.84"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Результат",
+                                        "value": {
+                                            "test": 1176,
+                                            "x": "27.39132",
+                                            "y": "53.86862",
+                                            "created_at": "2022-05-24T07:02:23.000000Z",
+                                            "model_phone": null,
+                                            "version_os": null,
+                                            "level_signal": null,
+                                            "distance": 0.8069000901536539,
+                                            "max_speed_download": null,
+                                            "medium_speed_download": null,
+                                            "max_speed_upload": null,
+                                            "min_speed_upload": null,
+                                            "max_ping": null,
+                                            "medium_ping": null,
+                                            "loss_ping": null,
+                                            "address_site_1": null,
+                                            "address_site_2": null,
+                                            "address_site_3": null,
+                                            "time_download_web_1": null,
+                                            "time_download_web_2": null,
+                                            "time_download_web_3": null,
+                                            "load_web_1": null,
+                                            "load_web_2": null,
+                                            "load_web_3": null,
+                                            "address_youtube": null,
+                                            "screen_resolution": null,
+                                            "time_start": null,
+                                            "data_used": null,
+                                            "complaint": false,
+                                            "is_room": false,
+                                            "operator": "MTS.BY",
+                                            "provider": "MTS",
+                                            "standard": "GSM",
+                                            "connection_type": "-",
+                                            "server": "212.98.179.84",
+                                            "user": "-",
+                                            "tower": {
+                                                "standard": "GSM",
+                                                "operator": "MTS.BY",
+                                                "bsn": 301,
+                                                "lac": 204,
+                                                "cell_id": 3011,
+                                                "mnc": 2,
+                                                "y": "53.8727222222222",
+                                                "x": "27.4014722222222"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/get-last-tests": {
+            "get": {
+                "tags": [
+                    "GET методы"
+                ],
+                "summary": "Возвращает последнии тесты",
+                "description": "Возвращает определенное количество последних тестов Пользователя",
+                "operationId": "getLastTests",
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "query",
+                        "description": "Хеш пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "Количество",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Тип теста (full, speed, web, video)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "hash": "3c786cc9ffd0288dc717233509613e2d",
+                                    "count": 10
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Результат",
+                                        "value": [
+                                            {
+                                                "test": 1175,
+                                                "x": "27.39132",
+                                                "y": "53.86862",
+                                                "created_at": "2022-05-23T21:00:00.000000Z",
+                                                "model_phone": null,
+                                                "version_os": null,
+                                                "level_signal": null,
+                                                "distance": "0.80690009015365",
+                                                "max_speed_download": null,
+                                                "medium_speed_download": null,
+                                                "max_speed_upload": null,
+                                                "min_speed_upload": null,
+                                                "max_ping": null,
+                                                "medium_ping": null,
+                                                "loss_ping": null,
+                                                "address_site_1": null,
+                                                "address_site_2": null,
+                                                "address_site_3": null,
+                                                "time_download_web_1": null,
+                                                "time_download_web_2": null,
+                                                "time_download_web_3": null,
+                                                "load_web_1": null,
+                                                "load_web_2": null,
+                                                "load_web_3": null,
+                                                "address_youtube": null,
+                                                "screen_resolution": null,
+                                                "time_start": null,
+                                                "data_used": null,
+                                                "complaint": false,
+                                                "is_room": false,
+                                                "operator": "MTS.BY",
+                                                "provider": "MTS",
+                                                "standard": "GSM",
+                                                "connection_type": "-",
+                                                "server": "212.98.179.84",
+                                                "user": "-",
+                                                "tower": {
+                                                    "standard": "GSM",
+                                                    "operator": "MTS.BY",
+                                                    "bsn": 301,
+                                                    "lac": 204,
+                                                    "cell_id": 3011,
+                                                    "mnc": 2,
+                                                    "y": "53.8727222222222",
+                                                    "x": "27.4014722222222"
+                                                }
+                                            },
+                                            {
+                                                "test": 1176,
+                                                "x": "27.39132",
+                                                "y": "53.86862",
+                                                "created_at": "2022-05-23T21:00:00.000000Z",
+                                                "model_phone": null,
+                                                "version_os": null,
+                                                "level_signal": null,
+                                                "distance": "0.80690009015365",
+                                                "max_speed_download": null,
+                                                "medium_speed_download": null,
+                                                "max_speed_upload": null,
+                                                "min_speed_upload": null,
+                                                "max_ping": null,
+                                                "medium_ping": null,
+                                                "loss_ping": null,
+                                                "address_site_1": null,
+                                                "address_site_2": null,
+                                                "address_site_3": null,
+                                                "time_download_web_1": null,
+                                                "time_download_web_2": null,
+                                                "time_download_web_3": null,
+                                                "load_web_1": null,
+                                                "load_web_2": null,
+                                                "load_web_3": null,
+                                                "address_youtube": null,
+                                                "screen_resolution": null,
+                                                "time_start": null,
+                                                "data_used": null,
+                                                "complaint": false,
+                                                "is_room": false,
+                                                "operator": "MTS.BY",
+                                                "provider": "MTS",
+                                                "standard": "GSM",
+                                                "connection_type": "-",
+                                                "server": "212.98.179.84",
+                                                "user": "-",
+                                                "tower": {
+                                                    "standard": "GSM",
+                                                    "operator": "MTS.BY",
+                                                    "bsn": 301,
+                                                    "lac": 204,
+                                                    "cell_id": 3011,
+                                                    "mnc": 2,
+                                                    "y": "53.8727222222222",
+                                                    "x": "27.4014722222222"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/get-servers": {
+            "get": {
+                "tags": [
+                    "GET методы"
+                ],
+                "summary": "Возвращает список тестовых серверов",
+                "description": "Возвращает список тестовых серверов",
+                "operationId": "getServers",
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Результат",
+                                        "value": [
+                                            {
+                                                "name": "212.98.179.84"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/get-web-resources": {
+            "get": {
+                "tags": [
+                    "GET методы"
+                ],
+                "summary": "Возвращает тестируемые веб-ресурсы",
+                "description": "Возвращает тестируемые веб-ресурсы",
+                "operationId": "getWebResources",
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Результат",
+                                        "value": {
+                                            "address_site_1": "https://www.google.com",
+                                            "address_site_2": "https://yandex.by",
+                                            "address_site_3": "https://www.youtube.com",
+                                            "address_video": "EJr3uAQwGek"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/upload-image": {
+            "post": {
+                "tags": [
+                    "POST методы"
+                ],
+                "summary": "Загружает файл на сервер",
+                "description": "Загружает файл на сервер для теста скорости",
+                "operationId": "uploadImage",
+                "parameters": [
+                    {
+                        "name": "image",
+                        "in": "query",
+                        "description": "Картинка",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен"
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/show/{table}/{api_id?}": {
+            "get": {
+                "tags": [
+                    "Общие методы"
+                ],
+                "summary": "Список записей",
+                "description": "Возращает список записей",
+                "operationId": "showRecords",
+                "parameters": [
+                    {
+                        "name": "table",
+                        "in": "path",
+                        "description": "Название таблицы",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "api_id",
+                        "in": "path",
+                        "description": "Идентификационный номер записи",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result_not_id": {
+                                        "summary": "Результат без передачей api_id",
+                                        "value": [
+                                            {
+                                                "param": "param1"
+                                            },
+                                            {
+                                                "param": "param2"
+                                            }
+                                        ]
+                                    },
+                                    "result_with_id": {
+                                        "summary": "Результат с передачей api_id",
+                                        "value": [
+                                            {
+                                                "param": "param1"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/create/{table}": {
+            "post": {
+                "tags": [
+                    "Общие методы"
+                ],
+                "summary": "Создание записис",
+                "description": "Создание записис",
+                "operationId": "createRecord",
+                "parameters": [
+                    {
+                        "name": "table",
+                        "in": "path",
+                        "description": "Название таблицы",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "Параметры",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "param": "param"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Возращаемый объект",
+                                        "value": {
+                                            "param": "param"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/update/{table}/{api_id}": {
+            "put": {
+                "tags": [
+                    "Общие методы"
+                ],
+                "summary": "Изменение записи",
+                "description": "Изменение записи выбранной таблицы",
+                "operationId": "updateRecord",
+                "parameters": [
+                    {
+                        "name": "table",
+                        "in": "path",
+                        "description": "Название таблицы",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "api_id",
+                        "in": "path",
+                        "description": "Идентификационный номер записи",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "Параметры",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "param": "param"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Возращаемый объект",
+                                        "value": {
+                                            "param": "param"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v1/delete/{table}/{api_id?}": {
+            "delete": {
+                "tags": [
+                    "Общие методы"
+                ],
+                "summary": "Удаление записи",
+                "description": "Удаление записи",
+                "operationId": "deleteRecord",
+                "parameters": [
+                    {
+                        "name": "table",
+                        "in": "path",
+                        "description": "Название таблицы",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "api_id",
+                        "in": "path",
+                        "description": "Идентификационный номер записи",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "table": "table",
+                                    "api_id": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пакет получен"
+                    },
+                    "400": {
+                        "description": "Неправильный, некорректный запрос"
+                    },
+                    "403": {
+                        "description": "Структура пакета неверна"
+                    },
+                    "404": {
+                        "description": "Не найден сервис"
+                    },
+                    "500": {
+                        "description": "Непредвиденная ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v2/admin-users": {
+            "get": {
+                "tags": [
+                    "API V2 Admin Users"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllAdminUsers",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Admin Users"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeAdminUser",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "admin-users",
+                                        "attributes": {
+                                            "login": "test",
+                                            "email": "test@test.test",
+                                            "password": "password",
+                                            "hash": "3cc27c61794413360561c9093f0bcb29"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/admin-users/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Admin Users"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findAdminUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Admin Users"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteAdminUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Admin Users"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateAdminUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "admin-users",
+                                        "id": "1",
+                                        "attributes": {
+                                            "login": "test",
+                                            "email": "test@test.test",
+                                            "password": "password"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/login": {
+            "post": {
+                "tags": [
+                    "API V2 Auth"
+                ],
+                "summary": "Авторизация",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "login": "test",
+                                    "password": "password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешно авторизирован"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v2/register": {
+            "post": {
+                "tags": [
+                    "API V2 Auth"
+                ],
+                "summary": "Регистрация",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "name": "test",
+                                    "login": "test",
+                                    "password": "password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешно авторизирован"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/v2/logout": {
+            "post": {
+                "tags": [
+                    "API V2 Auth"
+                ],
+                "summary": "Выход из сессии",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Выход из сессии"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/connection-types": {
+            "get": {
+                "tags": [
+                    "API V2 Connection Types"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllConnectionTypes",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Connection Types"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeConnectionType",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "connection-types",
+                                        "attributes": {
+                                            "name": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/connection-types/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Connection Types"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findConnectionType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Connection Types"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteConnectionType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Connection Types"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateConnectionType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "connection-types",
+                                        "id": "1",
+                                        "attributes": {
+                                            "name": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/operators": {
+            "get": {
+                "tags": [
+                    "API V2 Operators"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllOperators",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Operators"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeOperator",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "operators",
+                                        "attributes": {
+                                            "name": "test",
+                                            "provider": "test",
+                                            "mnc": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/operators/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Operators"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findOperator",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Operators"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteOperator",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Operators"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateOperator",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "operators",
+                                        "id": "1",
+                                        "attributes": {
+                                            "name": "test",
+                                            "provider": "test",
+                                            "mnc": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/servers": {
+            "get": {
+                "tags": [
+                    "API V2 Servers"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllServers",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Servers"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeServer",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "servers",
+                                        "attributes": {
+                                            "name": "test",
+                                            "active": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/servers/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Servers"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findServer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Servers"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteServer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Servers"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateServer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "servers",
+                                        "id": "16",
+                                        "attributes": {
+                                            "name": "test",
+                                            "active": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/standards": {
+            "get": {
+                "tags": [
+                    "API V2 Standards"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllStandards",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Standards"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeStandard",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "standards",
+                                        "attributes": {
+                                            "name": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/standards/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Standards"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findStandard",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Standards"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteStandard",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Standards"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateStandard",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "standards",
+                                        "id": "1",
+                                        "attributes": {
+                                            "name": "test"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/tests": {
+            "get": {
+                "tags": [
+                    "API V2 Tests"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllTests",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Tests"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeTest",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "standards",
+                                        "attributes": {
+                                            "x": 27.56756,
+                                            "y": 54.02928,
+                                            "band": 2600,
+                                            "sector": 5,
+                                            "model_phone": "SM-G991Btest",
+                                            "version_os": "30",
+                                            "level_signal": "-77",
+                                            "distance": 0.086700411277338,
+                                            "max_speed_download": 22.19,
+                                            "medium_speed_download": 0.9,
+                                            "max_speed_upload": 3.81,
+                                            "min_speed_upload": 3.73,
+                                            "max_ping": 740,
+                                            "medium_ping": 400.8,
+                                            "address_site_1": "https://www.google.com",
+                                            "screen_resolution": "automatic",
+                                            "data_used": "480",
+                                            "complaint": true,
+                                            "operator_id": 1,
+                                            "standard_id": 1,
+                                            "connection_type_id": 1,
+                                            "server_id": 1,
+                                            "tower_id": 1,
+                                            "load_web_1": "15",
+                                            "load_web_2": "30",
+                                            "load_web_3": "45",
+                                            "is_room": false,
+                                            "time_start": 0.807,
+                                            "time_download_web_1": 666,
+                                            "time_download_web_2": 777,
+                                            "time_download_web_3": 888,
+                                            "loss_ping": 400,
+                                            "user_id": 100
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/tests/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Tests"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Tests"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Tests"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateTest",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "tests",
+                                        "id": "13520",
+                                        "attributes": {
+                                            "x": 27.56756,
+                                            "y": 54.02928,
+                                            "band": 2600,
+                                            "sector": 5,
+                                            "model_phone": "SM-G991Btest",
+                                            "version_os": "30",
+                                            "level_signal": "-77",
+                                            "distance": 0.086700411277338,
+                                            "max_speed_download": 22.19,
+                                            "medium_speed_download": 0.9,
+                                            "max_speed_upload": 3.81,
+                                            "min_speed_upload": 3.73,
+                                            "max_ping": 740,
+                                            "medium_ping": 400.8,
+                                            "address_site_1": "https://www.google.com",
+                                            "screen_resolution": "automatic",
+                                            "data_used": "480",
+                                            "complaint": true,
+                                            "operator_id": 1,
+                                            "standard_id": 1,
+                                            "connection_type_id": 1,
+                                            "server_id": 1,
+                                            "tower_id": 1,
+                                            "load_web_1": "15",
+                                            "load_web_2": "30",
+                                            "load_web_3": "45",
+                                            "is_room": false,
+                                            "time_start": 0.807,
+                                            "time_download_web_1": 666,
+                                            "time_download_web_2": 777,
+                                            "time_download_web_3": 888,
+                                            "loss_ping": 400,
+                                            "user_id": 100
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/towers/get-base-tower": {
+            "get": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Возвращает вышки по айди или по радиусу",
+                "operationId": "getBaseTowerV2",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "msc",
+                        "in": "query",
+                        "description": "MSC",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "standard_id",
+                        "in": "query",
+                        "description": "Standard ID",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "cell_id",
+                        "in": "query",
+                        "description": "CELL ID",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/towers/get-location-towers": {
+            "get": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Возвращает локацию вышек находящихся в 1,5 радиуса от обслуживаемой вышки",
+                "operationId": "getLocationTowersV2",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "distance",
+                        "in": "query",
+                        "description": "Дистанция",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/towers/get-start-tower": {
+            "get": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Возвращает ближайшие вышки от коодинат",
+                "operationId": "getStartTowerV2",
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "query",
+                        "description": "Долгота",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "y",
+                        "in": "query",
+                        "description": "Широта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "mnc",
+                        "in": "query",
+                        "description": "MNC оператора",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "standard_id",
+                        "in": "query",
+                        "description": "ID Стандарта",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/towers": {
+            "get": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllTowers",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeTower",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "towers",
+                                        "attributes": {
+                                            "standard_id": 2,
+                                            "operator_id": 1,
+                                            "bsn": 523,
+                                            "lac": 116,
+                                            "cell_id": 37650,
+                                            "mnc": 1,
+                                            "x": 27.56756,
+                                            "y": 54.02928,
+                                            "band": 1,
+                                            "sector": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/towers/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findTower",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteTower",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Towers"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateTower",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "towers",
+                                        "id": "231362",
+                                        "attributes": {
+                                            "standard_id": 2,
+                                            "operator_id": 1,
+                                            "bsn": 523,
+                                            "lac": 116,
+                                            "cell_id": 37650,
+                                            "mnc": 1,
+                                            "x": 27.56756,
+                                            "y": 54.02928,
+                                            "band": 1,
+                                            "sector": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/upload-image": {
+            "post": {
+                "tags": [
+                    "API V2 Upload"
+                ],
+                "summary": "Загрузка изображения",
+                "operationId": "uploadImageV2",
+                "responses": {
+                    "200": {
+                        "description": "Изображение успешно загружено"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/upload-feedback-mail": {
+            "post": {
+                "tags": [
+                    "API V2 Upload"
+                ],
+                "summary": "Отправка псием",
+                "operationId": "uploadFeedbackMail",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "from": "test@test.ru",
+                                    "subject": "test email feedback",
+                                    "message": "test email text message"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Сообщение успешно доставлено"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/users": {
+            "get": {
+                "tags": [
+                    "API V2 Users"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllUsers",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Users"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeUser",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "users",
+                                        "attributes": {
+                                            "login": "test",
+                                            "password": "password",
+                                            "hash": "3cc27c61794413360561c9093f0bcb29"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/users/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Users"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Users"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Users"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "users",
+                                        "id": "1",
+                                        "attributes": {
+                                            "login": "test",
+                                            "password": "password"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/web-resources": {
+            "get": {
+                "tags": [
+                    "API V2 Web Resources"
+                ],
+                "summary": "Получение списка ресурсов",
+                "operationId": "getAllWebResources",
+                "parameters": [
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Query параметры для филтрации и сортировки",
+                        "required": false,
+                        "schema": {
+                            "properties": {
+                                "filter": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурсы получены",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "API V2 Web Resources"
+                ],
+                "summary": "Создание ресурса",
+                "operationId": "storeWebResource",
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "web-resources",
+                                        "attributes": {
+                                            "address_site_1": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "address_site_2": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "address_site_3": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "address_video": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "active": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Ресурс создан"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v2/web-resources/{id}": {
+            "get": {
+                "tags": [
+                    "API V2 Web Resources"
+                ],
+                "summary": "Получение ресурса по ID",
+                "operationId": "findWebResource",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен",
+                        "content": {
+                            "application/vnd.api+json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "404": {
+                        "description": "Ресурс не найден"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "API V2 Web Resources"
+                ],
+                "summary": "Удаление ресурса",
+                "operationId": "deleteWebResource",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Ресурс удален"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "API V2 Web Resources"
+                ],
+                "summary": "Обновление ресурса",
+                "operationId": "updateWebResource",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID ресурса",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Json data",
+                    "required": true,
+                    "content": {
+                        "application/vnd.api+json": {
+                            "schema": {
+                                "example": {
+                                    "data": {
+                                        "type": "web-resources",
+                                        "id": "1",
+                                        "attributes": {
+                                            "address_site_1": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "address_site_2": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "address_site_3": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "address_video": "https://laraveljsonapi.io/docs/3.0/schemas/filters.html#writing-filters",
+                                            "active": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ресурс получен"
+                    },
+                    "400": {
+                        "description": "Cервер не может или не будет обрабатывать запрос"
+                    },
+                    "401": {
+                        "description": "Для доступа к ресурсу необходима авторизация"
+                    },
+                    "403": {
+                        "description": "Нет разрешения на доступ к ресурсу"
+                    },
+                    "422": {
+                        "description": "Валидация не пройдена"
+                    },
+                    "500": {
+                        "description": "Внутренняя ошибка сервера"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "GET методы",
+            "description": "API методы для получание данных"
+        },
+        {
+            "name": "POST методы",
+            "description": "API методы для сохранения данных"
+        },
+        {
+            "name": "Общие методы",
+            "description": "API методы"
+        }
+    ]
+}

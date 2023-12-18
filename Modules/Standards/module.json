@@ -1,0 +1,11 @@
+{
+    "name": "Standards",
+    "alias": "standards",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Standards\\Providers\\StandardsServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,16 @@
+{
+    "Roles": true,
+    "Users": true,
+    "Profile": true,
+    "ConnectionTypes": true,
+    "Operators": true,
+    "Standards": true,
+    "Servers": true,
+    "WebResources": true,
+    "Tests": true,
+    "Statistics": true,
+    "Towers": true,
+    "Maps": true,
+    "Clients": true,
+    "AdminUsers": true
+}

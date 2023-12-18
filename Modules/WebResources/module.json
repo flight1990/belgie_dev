@@ -1,0 +1,11 @@
+{
+    "name": "WebResources",
+    "alias": "webresources",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\WebResources\\Providers\\WebResourcesServiceProvider"
+    ],
+    "files": []
+}
